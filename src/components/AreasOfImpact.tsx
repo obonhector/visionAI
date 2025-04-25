@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // Importa iconos relevantes para cada área
-import { FiCpu, FiUsers, FiDatabase, FiTrendingUp, FiSettings } from 'react-icons/fi'; // Ejemplos
+import { FiUsers, FiDatabase, FiTrendingUp, FiSettings } from 'react-icons/fi'; // Ejemplos
 
 // --- AREAS OF IMPACT SECTION ---
 

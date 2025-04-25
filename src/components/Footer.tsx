@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 // Assuming ModernBackground provides a visually appealing background
 // import ModernBackground from './ModernBackground';
 import { FiMail, FiPhone, FiMapPin, FiArrowRight } from 'react-icons/fi'; // Added ArrowRight for links
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'; // Example social icons
 
 // Mock ModernBackground component for demonstration
 const ModernBackground: React.FC<{ variant: string; className?: string; children: React.ReactNode }> = ({ className, children }) => (
