@@ -479,7 +479,6 @@ const EnhancedHeroGraph: React.FC = () => {
              <div>
                <div className="text-xs font-medium text-white/80 font-sans">Eficiencia</div>
                <div className="text-xl sm:text-2xl font-bold text-white tracking-tight font-sans">+62.5%</div>
-               <div className="text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px] text-emerald-300/90 font-medium">100h ahorradas/mes</div>
              </div>
            </div>
            <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 blur-lg opacity-40"></div>
