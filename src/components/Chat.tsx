@@ -1,6 +1,21 @@
 // src/components/BotpressChat.tsx
 import React, { useEffect } from 'react';
 
+// Función helper para abrir el chat de forma segura
+export const openChat = () => {
+  if (window.botpressWebChat) {
+    window.botpressWebChat.sendEvent({ type: 'show' });
+  } else {
+    console.warn('Botpress Web Chat no está listo todavía');
+    // Intentamos de nuevo en 1 segundo
+    setTimeout(() => {
+      if (window.botpressWebChat) {
+        window.botpressWebChat.sendEvent({ type: 'show' });
+      }
+    }, 1000);
+  }
+};
+
 const BotpressChat: React.FC = () => {
   
   useEffect(() => {

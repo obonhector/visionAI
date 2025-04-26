@@ -1,6 +1,7 @@
 // src/components/Footer.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
+import BotpressChat, { openChat } from './Chat';
 // Assuming ModernBackground provides a visually appealing background
 // import ModernBackground from './ModernBackground';
 import { FiMail, FiPhone, FiMapPin, FiArrowRight } from 'react-icons/fi'; // Added ArrowRight for links
@@ -41,7 +42,11 @@ const Footer: React.FC = () => {
   };
 
   // Reusable link component for consistency
-  const FooterLink: React.FC<{ href: string; children: React.ReactNode; onClick?: () => void }> = ({ href, children, onClick }) => (
+  const FooterLink: React.FC<{ 
+    href: string; 
+    children: React.ReactNode; 
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void 
+  }> = ({ href, children, onClick }) => (
     <a
       href={href}
       onClick={onClick}
@@ -100,7 +105,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li><FooterLink href="#proceso">Procesos</FooterLink></li>
               <li><FooterLink href="#solucion">Soluciones</FooterLink></li>
-              <li><FooterLink href="#" onClick={() => window.botpressWebChat.sendEvent({ type: 'show' })}>Dudas</FooterLink></li>
+              <li><FooterLink href="#" onClick={(e) => { e.preventDefault(); openChat(); }}>Dudas</FooterLink></li>
             </ul>
           </motion.div>
 

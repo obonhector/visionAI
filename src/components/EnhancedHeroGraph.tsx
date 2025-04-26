@@ -93,11 +93,11 @@ const EnhancedHeroGraph: React.FC = () => {
   // --- Data points for the graph visualization ---
   const dataPoints: DataPoint[] = [
     { x: 60, y: 200, label: 'Ene', value: 'Base', growth: '+0%', delay: 0, color: '#4F46E5' },
-    { x: 140, y: 180, label: 'Feb', value: '+12%', growth: '+12%', delay: 0.1, color: '#6366F1' },
-    { x: 220, y: 150, label: 'Mar', value: '+52%', growth: '+40%', delay: 0.2, color: '#8B5CF6' },
-    { x: 300, y: 100, label: 'Abr', value: '+89%', growth: '+37%', delay: 0.3, color: '#A855F7' },
-    { x: 380, y: 60, label: 'May', value: '+120%', growth: '+31%', delay: 0.4, color: '#D946EF' },
-    { x: 440, y: 40, label: 'Jun', value: '+147%', growth: '+27%', delay: 0.5, color: '#EC4899' }
+    { x: 140, y: 180, label: 'Feb', value: '+5%', growth: '+5%', delay: 0.1, color: '#6366F1' },
+    { x: 220, y: 150, label: 'Mar', value: '+12%', growth: '+7%', delay: 0.2, color: '#8B5CF6' },
+    { x: 300, y: 120, label: 'Abr', value: '+18%', growth: '+6%', delay: 0.3, color: '#A855F7' },
+    { x: 380, y: 80, label: 'May', value: '+25%', growth: '+7%', delay: 0.4, color: '#D946EF' },
+    { x: 440, y: 40, label: 'Jun', value: '+30%', growth: '+5%', delay: 0.5, color: '#EC4899' }
   ];
 
   // --- Generate SVG paths dynamically ---
@@ -106,7 +106,7 @@ const EnhancedHeroGraph: React.FC = () => {
   const areaPath = generateAreaPath(dataPoints, yBaselineForArea);
   const secondaryLinePoints = [
     { x: 60, y: 210 }, { x: 140, y: 190 }, { x: 220, y: 170 },
-    { x: 300, y: 130 }, { x: 380, y: 80 }, { x: 440, y: 60 }
+    { x: 300, y: 140 }, { x: 380, y: 100 }, { x: 440, y: 60 }
   ];
   const secondaryLinePath = generateLinePath(secondaryLinePoints);
 
@@ -136,7 +136,7 @@ const EnhancedHeroGraph: React.FC = () => {
 
   return (
     // Main container - Added key for replay functionality
-    <motion.div ref={ref} className="relative w-full aspect-[4/3] xs:aspect-[16/9] md:aspect-[18/9] max-w-4xl mx-auto text-white" key={animationKey}>
+    <motion.div ref={ref} className="relative w-full aspect-[3/4] xs:aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] max-w-4xl mx-auto text-white" key={animationKey}>
 
       {/* Subtle Background Gradient Animation */}
       <motion.div
@@ -300,14 +300,14 @@ const EnhancedHeroGraph: React.FC = () => {
                  // onMouseLeave handled by SVG container
               >
                 {/* Invisible larger circle for easier hover targeting */}
-                <circle cx={point.x} cy={point.y} r="15" fill="transparent" />
+                <circle cx={point.x} cy={point.y} r="20" fill="transparent" />
 
                 {/* Outer halo circle (Subtle animation) */}
                 <motion.circle
                   cx={point.x}
                   cy={point.y}
-                  initial={{ opacity: 0, r: 8 }}
-                  animate={isInView ? { opacity: isHighlighted ? 0.6 : 0.3, r: isHighlighted ? 11 : 8 } : { opacity: 0, r: 8 }}
+                  initial={{ opacity: 0, r: 6 }}
+                  animate={isInView ? { opacity: isHighlighted ? 0.6 : 0.3, r: isHighlighted ? 13 : 10 } : { opacity: 0, r: 6 }}
                   transition={{ duration: 0.3, delay: postLineDrawDelay + point.delay, ease: "easeOut" }}
                   fill={point.color || "white"}
                   filter="url(#neon-glow)"
@@ -316,8 +316,8 @@ const EnhancedHeroGraph: React.FC = () => {
                 <motion.circle
                   cx={point.x}
                   cy={point.y}
-                  initial={{ opacity: 0, r: 5 }}
-                  animate={isInView ? { opacity: 1, r: isHighlighted ? 6.5 : 5, filter: isHighlighted ? "url(#highlight-glow)" : "url(#soft-shadow)" } : { opacity: 0, r: 5 }}
+                  initial={{ opacity: 0, r: 6 }}
+                  animate={isInView ? { opacity: 1, r: isHighlighted ? 8 : 6, filter: isHighlighted ? "url(#highlight-glow)" : "url(#soft-shadow)" } : { opacity: 0, r: 6 }}
                   transition={{ duration: 0.3, delay: postLineDrawDelay + point.delay, ease: "easeOut" }}
                   fill="white"
                   stroke={isHighlighted ? point.color : 'none'} // Add colored stroke on hover
@@ -353,13 +353,13 @@ const EnhancedHeroGraph: React.FC = () => {
               x={point.x} y="260"
               textAnchor="middle"
               fill={activePointIndex === i ? point.color : "white"}
-              className="text-[9px] sm:text-[11px] md:text-[12px] font-sans font-medium pointer-events-none" // Added pointer-events-none
+              className="text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px] font-sans font-medium pointer-events-none"
             >
               {point.label}
             </motion.text>
           ))}
           {/* Y-axis */}
-          {['0%', '25%', '50%', '75%', '100%'].map((value, i) => (
+          {['0%', '7.5%', '15%', '22.5%', '30%'].map((value, i) => (
             <motion.text
               key={`y-label-${i}`}
               initial={{ opacity: 0 }}
@@ -368,7 +368,7 @@ const EnhancedHeroGraph: React.FC = () => {
               x="30" y={220 - i * 40}
               textAnchor="end"
               fill="white"
-              className="text-[9px] sm:text-[11px] md:text-[12px] font-sans pointer-events-none" // Added pointer-events-none
+              className="text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px] font-sans pointer-events-none"
             >
               {value}
             </motion.text>
@@ -389,7 +389,7 @@ const EnhancedHeroGraph: React.FC = () => {
                 x={point.x} y={point.y - 15}
                 textAnchor="middle"
                 fill={activePointIndex === idx ? point.color : "white"}
-                className="text-[10px] sm:text-[11px] md:text-[12px] font-semibold font-sans pointer-events-none" // Added pointer-events-none
+                className="text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px] font-semibold font-sans pointer-events-none"
                 filter="url(#soft-shadow)"
               >
                 {point.value}
@@ -421,13 +421,13 @@ const EnhancedHeroGraph: React.FC = () => {
                 filter="url(#soft-shadow)"
               />
               {/* Tooltip Content */}
-              <text x={tooltipData.x} y={tooltipData.y - 48} textAnchor="middle" fill="white" className="text-[10px] font-medium">
+              <text x={tooltipData.x} y={tooltipData.y - 48} textAnchor="middle" fill="white" className="text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px] font-medium">
                 {tooltipData.label} 2025
               </text>
               <text x={tooltipData.x} y={tooltipData.y - 33} textAnchor="middle" fill="white" className="text-[12px] font-bold">
                 {tooltipData.value}
               </text>
-              <text x={tooltipData.x} y={tooltipData.y - 19} textAnchor="middle" fill="#A78BFA" className="text-[9px]"> {/* Violet color */}
+              <text x={tooltipData.x} y={tooltipData.y - 19} textAnchor="middle" fill="#A78BFA" className="text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px]"> {/* Violet color */}
                 Crecimiento: {tooltipData.growth}
               </text>
               {/* Tooltip Pointer */}
@@ -441,13 +441,13 @@ const EnhancedHeroGraph: React.FC = () => {
       </svg>
 
       {/* Floating Stat Cards */}
-      <div className="absolute inset-0 pointer-events-none flex flex-col items-end justify-center p-2 xs:p-4 sm:p-8 space-y-2 xs:space-y-3"> {/* Adjusted spacing */}
+      <div className="absolute inset-0 pointer-events-none flex flex-col items-end justify-center ml-[80%] sm:ml-[85%] md:ml-[90%] space-y-2 xs:space-y-3">
         {/* Growth Card */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-          transition={{ duration: 0.6, delay: postLineDrawDelay + 0.5 }} // Faster appearance
-          className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-2 xs:p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-28 xs:w-36 sm:w-44" // More responsive sizes
+          transition={{ duration: 0.6, delay: postLineDrawDelay + 0.5 }}
+          className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-2 xs:p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-28 xs:w-36 sm:w-44"
           onMouseEnter={() => handlePointHover(dataPoints.length - 1)}
           onMouseLeave={() => handlePointHover(null)}
         >
@@ -472,8 +472,8 @@ const EnhancedHeroGraph: React.FC = () => {
            <div className="relative z-10 flex items-start gap-2 sm:gap-3">
              <div className="p-1.5 rounded-lg bg-purple-500/20 text-purple-300"> <ZapIcon /> </div>
              <div>
-               <div className="text-xs font-medium text-white/80 font-sans">Eficiencia</div>
-               <div className="text-xl sm:text-2xl font-bold text-white tracking-tight font-sans">+83%</div>
+               <div className="text-xs font-medium text-white/80 font-sans">Costes</div>
+               <div className="text-xl sm:text-2xl font-bold text-white tracking-tight font-sans">-31%</div>
              </div>
            </div>
            <div className="absolute -inset-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-lg opacity-40"></div>
@@ -490,8 +490,9 @@ const EnhancedHeroGraph: React.FC = () => {
            <div className="relative z-10 flex items-start gap-2 sm:gap-3">
              <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-300"> <ActivityIcon /> </div>
              <div>
-               <div className="text-xs font-medium text-white/80 font-sans">Actividad</div>
-               <div className="text-xl sm:text-2xl font-bold text-white tracking-tight font-sans">Alto</div>
+               <div className="text-xs font-medium text-white/80 font-sans">Eficiencia</div>
+               <div className="text-xl sm:text-2xl font-bold text-white tracking-tight font-sans">+62.5%</div>
+               <div className="text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px] text-emerald-300/90 font-medium">100h ahorradas/mes</div>
              </div>
            </div>
            <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 blur-lg opacity-40"></div>
