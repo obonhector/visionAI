@@ -1,7 +1,7 @@
 // src/components/Footer.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import BotpressChat, { openChat } from './Chat';
+import { openChat } from './Chat';
 // Assuming ModernBackground provides a visually appealing background
 // import ModernBackground from './ModernBackground';
 import { FiMail, FiPhone, FiMapPin, FiArrowRight } from 'react-icons/fi'; // Added ArrowRight for links

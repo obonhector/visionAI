@@ -20,13 +20,6 @@ const ActivityIcon = () => (
   </svg>
 );
 
-const ReplayIcon = () => (
- <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-  </svg>
-);
-
-
 // --- Helper function to generate SVG path data (Smooth Curves) ---
 const generateLinePath = (points: { x: number; y: number }[]): string => {
   if (!points || points.length < 2) return '';
@@ -81,8 +74,6 @@ interface TooltipData {
 // --- Define the functional component EnhancedHeroGraph ---
 const EnhancedHeroGraph: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  // State to force re-animation on replay
-  const [animationKey, setAnimationKey] = useState(0);
   // Use useInView with the key to re-trigger when key changes
   const isInView = useInView(ref, { once: false, amount: 0.2 }); // `once: false` needed for replay
 
@@ -127,16 +118,12 @@ const EnhancedHeroGraph: React.FC = () => {
     }
   };
 
-  const handleReplay = () => {
-    setAnimationKey(prevKey => prevKey + 1); // Increment key to force re-render/re-animate
-  };
-
   // Base animation delay for elements appearing after lines
   const postLineDrawDelay = 1.5; // Should be >= line draw duration
 
   return (
     // Main container - Added key for replay functionality
-    <motion.div ref={ref} className="relative w-full aspect-[3/4] xs:aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] max-w-4xl mx-auto text-white" key={animationKey}>
+    <motion.div ref={ref} className="relative w-full aspect-[3/4] xs:aspect-[4/3] sm:aspect-[16/9] md:aspect-[18/9] max-w-4xl mx-auto text-white">
 
       {/* Subtle Background Gradient Animation */}
       <motion.div
