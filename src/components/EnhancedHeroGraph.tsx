@@ -136,21 +136,7 @@ const EnhancedHeroGraph: React.FC = () => {
 
   return (
     // Main container - Added key for replay functionality
-    <motion.div ref={ref} className="relative w-full aspect-[16/9] md:aspect-[18/9] max-w-4xl mx-auto text-white" key={animationKey}>
-
-       {/* Replay Button - Appears when animation might have finished */}
-       {isInView && ( // Show button only when component is generally visible
-         <motion.button
-           initial={{ opacity: 0, scale: 0.5 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ delay: postLineDrawDelay + 1.5 }} // Delay appearance
-           className="absolute top-4 right-4 z-30 bg-white/10 backdrop-blur-lg rounded-full p-2 hover:bg-white/20 transition-colors duration-300"
-           onClick={handleReplay}
-           aria-label="Reproducir animación"
-         >
-           <ReplayIcon />
-         </motion.button>
-       )}
+    <motion.div ref={ref} className="relative w-full aspect-[4/3] xs:aspect-[16/9] md:aspect-[18/9] max-w-4xl mx-auto text-white" key={animationKey}>
 
       {/* Subtle Background Gradient Animation */}
       <motion.div
@@ -455,13 +441,13 @@ const EnhancedHeroGraph: React.FC = () => {
       </svg>
 
       {/* Floating Stat Cards */}
-      <div className="absolute inset-0 pointer-events-none flex flex-col items-end justify-center p-4 sm:p-8 space-y-3"> {/* Reduced space */}
+      <div className="absolute inset-0 pointer-events-none flex flex-col items-end justify-center p-2 xs:p-4 sm:p-8 space-y-2 xs:space-y-3"> {/* Adjusted spacing */}
         {/* Growth Card */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
           transition={{ duration: 0.6, delay: postLineDrawDelay + 0.5 }} // Faster appearance
-          className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-36 sm:w-44" // Slightly smaller
+          className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-2 xs:p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-28 xs:w-36 sm:w-44" // More responsive sizes
           onMouseEnter={() => handlePointHover(dataPoints.length - 1)}
           onMouseLeave={() => handlePointHover(null)}
         >
@@ -479,7 +465,7 @@ const EnhancedHeroGraph: React.FC = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
           transition={{ duration: 0.6, delay: postLineDrawDelay + 0.65 }} // Staggered delay
-           className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-36 sm:w-44"
+           className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-2 xs:p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-28 xs:w-36 sm:w-44"
            onMouseEnter={() => handlePointHover(3)} // Linked to April
            onMouseLeave={() => handlePointHover(null)}
         >
@@ -497,7 +483,7 @@ const EnhancedHeroGraph: React.FC = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
           transition={{ duration: 0.6, delay: postLineDrawDelay + 0.8 }} // Staggered delay
-           className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-36 sm:w-44"
+           className="pointer-events-auto bg-white/10 backdrop-blur-md rounded-xl p-2 xs:p-3 sm:p-4 border border-white/20 shadow-lg overflow-hidden w-28 xs:w-36 sm:w-44"
            onMouseEnter={() => handlePointHover(dataPoints.length - 1)} // Linked to last point
            onMouseLeave={() => handlePointHover(null)}
         >
@@ -511,23 +497,6 @@ const EnhancedHeroGraph: React.FC = () => {
            <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 blur-lg opacity-40"></div>
         </motion.div>
       </div>
-
-      {/* Interactive Legend */}
-       <motion.div
-         className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-3 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10"
-         initial={{ opacity: 0, y: 10 }}
-         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-         transition={{ duration: 0.5, delay: postLineDrawDelay + 1 }}
-       >
-         <div className="flex items-center gap-1.5">
-           <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500"></div>
-           <span className="text-xs text-white/80">Principal</span>
-         </div>
-         <div className="flex items-center gap-1.5">
-           <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500"></div>
-           <span className="text-xs text-white/80">Secundario</span>
-         </div>
-       </motion.div>
 
     </motion.div> // End of main container
   );

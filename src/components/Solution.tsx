@@ -105,34 +105,44 @@ const SolutionSection: React.FC = () => {
           {/* Columna Visual Abstracta */}
           <motion.div
             variants={visualVariants}
-            className="relative aspect-square max-w-md mx-auto lg:max-w-none lg:mx-0" // Contenedor para la visualización
+            className="relative w-full h-[300px] md:h-[400px] lg:aspect-square lg:h-auto max-w-md mx-auto lg:max-w-none lg:mx-0" // Ajustado para ser responsive
           >
             {/* Elemento base con gradiente y rotación */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-600/50 via-purple-600/40 to-transparent blur-2xl"
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-600/50 via-purple-600/40 to-transparent blur-2xl scale-75 md:scale-100"
               animate={{ rotate: 360 }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             />
             {/* Forma interior pulsante */}
             <motion.div
-              className="absolute inset-[15%] rounded-full bg-gradient-to-tl from-white/10 to-indigo-400/30 shadow-inner"
+              className="absolute inset-[15%] rounded-full bg-gradient-to-tl from-white/10 to-indigo-400/30 shadow-inner scale-75 md:scale-100"
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
              {/* "Núcleo" brillante */}
-             <div className="absolute inset-[35%] rounded-full bg-white/80 blur-xl" />
-             <div className="absolute inset-[38%] rounded-full bg-indigo-300 blur-lg" />
+             <div className="absolute inset-[35%] rounded-full bg-white/80 blur-xl scale-75 md:scale-100" />
+             <div className="absolute inset-[38%] rounded-full bg-indigo-300 blur-lg scale-75 md:scale-100" />
 
-             {/* Pequeñas "partículas" orbitando (simplificado) */}
-             <motion.div className="absolute top-[10%] left-[50%] w-4 h-4 bg-violet-300 rounded-full blur-sm"
-                style={{transformOrigin: '50% 400%'}} // Orbitar alrededor del centro
+             {/* Pequeñas "partículas" orbitando (ajustadas para responsive) */}
+             <motion.div 
+                className="absolute w-2 h-2 md:w-4 md:h-4 bg-violet-300 rounded-full blur-sm"
+                style={{
+                  top: '10%',
+                  left: '50%',
+                  transformOrigin: '50% 400%'
+                }}
                 animate={{ rotate: -360 }}
                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
              />
-              <motion.div className="absolute bottom-[20%] right-[15%] w-3 h-3 bg-indigo-200 rounded-full blur-sm"
-                 style={{transformOrigin: '50% -300%'}} // Orbitar alrededor del centro
-                 animate={{ rotate: 360 }}
-                 transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: 0.5 }}
+              <motion.div 
+                className="absolute w-2 h-2 md:w-3 md:h-3 bg-indigo-200 rounded-full blur-sm"
+                style={{
+                  bottom: '20%',
+                  right: '15%',
+                  transformOrigin: '50% -300%'
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: 0.5 }}
              />
           </motion.div>
 
