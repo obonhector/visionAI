@@ -6,6 +6,7 @@ import AreasOfImpact from "./components/AreasOfImpact";
 import ProcessSection from "./components/process";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 import "./index.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       {/* Este componente se encargará de inyectar los scripts necesarios */}
       {/* Su posición aquí no afecta dónde aparece el widget del chat (normalmente es fijo) */}
       <BotpressChat />
+      <Analytics />
     </div>
   );
 }
