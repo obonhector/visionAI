@@ -94,32 +94,32 @@ const HeroSection: React.FC = () => {
   return (
     <div
       ref={heroRef}
-      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0e0e2c] p-6" // Changed from gradient to solid color
+      className="relative min-h-[100svh] w-full flex flex-col items-center justify-center overflow-hidden bg-[#0e0e2c] px-4 py-16 sm:p-6" // Adjusted for mobile
     >
-      {/* Partículas decorativas flotantes */}
+      {/* Partículas decorativas flotantes - Reduced for mobile */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(40)].map((_, i) => (
+        {[...Array(20)].map((_, i) => ( // Reduced number for mobile
           <div
             key={i}
             className="absolute rounded-full bg-indigo-500/20 blur-xl"
             style={{
-              width: `${Math.random() * 20 + 5}px`,
-              height: `${Math.random() * 20 + 5}px`,
+              width: `${Math.random() * 15 + 5}px`,
+              height: `${Math.random() * 15 + 5}px`,
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.3 + 0.1,
-              animation: `float-${i % 3} ${Math.random() * 10 + 15}s infinite linear alternate`, // Added alternate direction
+              opacity: Math.random() * 0.2 + 0.1,
+              animation: `float-${i % 3} ${Math.random() * 8 + 10}s infinite linear alternate`,
               animationDelay: `${Math.random() * 5}s`,
             }}
           />
         ))}
       </div>
 
-      {/* Mesh gradient de fondo (manchas de color difuminadas) */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-0 left-[10%] w-[60%] h-[40%] bg-blue-600/30 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-[20%] w-[50%] h-[30%] bg-violet-600/30 rounded-full blur-[120px]" />
-        <div className="absolute top-[30%] right-[10%] w-[40%] h-[40%] bg-indigo-600/30 rounded-full blur-[120px]" />
+      {/* Mesh gradient de fondo - Adjusted for mobile */}
+      <div className="absolute inset-0 opacity-20 sm:opacity-30 pointer-events-none">
+        <div className="absolute top-0 left-[5%] w-[80%] sm:w-[60%] h-[40%] bg-blue-600/30 rounded-full blur-[80px] sm:blur-[120px]" />
+        <div className="absolute bottom-0 right-[10%] w-[70%] sm:w-[50%] h-[30%] bg-violet-600/30 rounded-full blur-[80px] sm:blur-[120px]" />
+        <div className="absolute top-[30%] right-[5%] w-[60%] sm:w-[40%] h-[40%] bg-indigo-600/30 rounded-full blur-[80px] sm:blur-[120px]" />
       </div>
 
       {/* Overlay de ruido sutil */}
@@ -130,36 +130,36 @@ const HeroSection: React.FC = () => {
         }}
       />
 
-      {/* Efecto de líneas de cuadrícula estáticas */}
-      <div className="absolute inset-0 grid grid-cols-6 md:grid-cols-12 grid-rows-6 pointer-events-none">
+      {/* Efecto de líneas de cuadrícula - Adjusted for mobile */}
+      <div className="absolute inset-0 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 grid-rows-6 pointer-events-none">
         {[...Array(72)].map((_, i) => (
           <div
             key={`grid-${i}`}
-            className="border-[0.5px] border-white/[0.05]" // Grid lines very subtle
+            className="border-[0.5px] border-white/[0.05]"
           />
         ))}
       </div>
 
-      {/* Anillos decorativos con blur y pulso */}
-      <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] border-2 border-indigo-500/10 rounded-full blur-md pointer-events-none animate-pulse" />
-      <div className="absolute bottom-[15%] right-[10%] w-[200px] h-[200px] border border-violet-500/10 rounded-full blur-sm pointer-events-none animate-pulse animation-delay-1000" />
+      {/* Anillos decorativos - Adjusted for mobile */}
+      <div className="absolute top-[10%] left-[5%] w-[150px] sm:w-[300px] h-[150px] sm:h-[300px] border-2 border-indigo-500/10 rounded-full blur-md pointer-events-none animate-pulse" />
+      <div className="absolute bottom-[15%] right-[10%] w-[100px] sm:w-[200px] h-[100px] sm:h-[200px] border border-violet-500/10 rounded-full blur-sm pointer-events-none animate-pulse animation-delay-1000" />
 
       {/* Contenido principal animado */}
       <AnimatePresence>
-        {isLoaded && ( // Render content only when isLoaded is true
+        {isLoaded && (
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12 relative z-10 flex flex-col items-center" // Reduced vertical padding
+            className="w-full max-w-7xl mx-auto px-0 sm:px-4 md:px-8 py-4 sm:py-8 md:py-12 relative z-10 flex flex-col items-center"
           >
             {/* Headline & Content Area */}
-            <div className="max-w-4xl mx-auto text-center mb-8 md:mb-10"> {/* Reduced bottom margin from mb-12 md:mb-16 */}
+            <div className="w-full max-w-4xl mx-auto text-center mb-6 sm:mb-8 md:mb-10">
               {/* Tagline Pill */}
               <motion.div
                 variants={itemVariants}
-                className="inline-block rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-4 py-1 text-sm font-medium mb-6"
+                className="inline-block rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-3 sm:px-4 py-1 text-xs sm:text-sm font-medium mb-4 sm:mb-6"
               >
                 Soluciones de IA para Pymes
               </motion.div>
@@ -167,7 +167,7 @@ const HeroSection: React.FC = () => {
               {/* Main Heading */}
               <motion.h1
                 variants={itemVariants}
-                className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]" // Tight leading for large text
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-white mb-4 sm:mb-6 leading-[1.2] sm:leading-[1.1] px-2 sm:px-0"
               >
                 No te quedes atrás: Transforma tu negocio con IA de vanguardia.
               </motion.h1>
@@ -175,20 +175,23 @@ const HeroSection: React.FC = () => {
               {/* Subheading/Paragraph */}
               <motion.p
                 variants={itemVariants}
-                className="text-lg md:text-xl text-indigo-100/90 font-light max-w-3xl mx-auto mb-10 leading-relaxed"
+                className="text-base sm:text-lg md:text-xl text-indigo-100/90 font-light max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed px-3 sm:px-4"
               >
                 Implementamos soluciones de IA a medida para optimizar tus operaciones, mejorar la experiencia de cliente y potenciar el crecimiento de tu Pyme.
               </motion.p>
 
               {/* Call to Action Buttons */}
-              <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center mb-8"> {/* Added mb-8 to create consistent spacing */}
+              <motion.div 
+                variants={itemVariants} 
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 px-4 sm:px-0"
+              >
                 {/* Primary Button */}
                 <motion.a
                   variants={buttonVariants}
                   whileHover="hover"
                   whileTap="tap"
-                  href="#solucion" // Link to solutions section
-                  className="px-8 py-3.5 rounded-full inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-blue-500 hover:text-white text-white font-medium shadow-lg shadow-indigo-500/30 transition-all duration-300"
+                  href="#solucion"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 rounded-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-blue-500 hover:text-white text-white font-medium shadow-lg shadow-indigo-500/30 transition-all duration-300 text-sm sm:text-base"
                 >
                   Descubrir Soluciones
                   <FiArrowRight className="ml-1" />
@@ -199,8 +202,8 @@ const HeroSection: React.FC = () => {
                   variants={buttonVariants}
                   whileHover="hover"
                   whileTap="tap"
-                  href="#contacto" // Link to contact section
-                  className="px-8 py-3.5 rounded-full inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-medium border border-white/10 backdrop-blur-sm transition-all duration-300"
+                  href="#contacto"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 rounded-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-medium border border-white/10 backdrop-blur-sm transition-all duration-300 text-sm sm:text-base"
                 >
                   Contactar
                 </motion.a>
@@ -208,32 +211,26 @@ const HeroSection: React.FC = () => {
             </div>
 
             {/* Visualización gráfica avanzada */}
-            {/* The graph container itself is animated */}
             <motion.div
               variants={graphVisualVariants}
-              className="w-full max-w-7xl -mt-8" // Added negative margin top to pull it up slightly
+              className="w-full max-w-7xl -mt-4 sm:-mt-8 px-2 sm:px-0"
             >
               <Suspense fallback={<GraphLoader />}>
-                <EnhancedHeroGraph /> {/* Render the graph component */}
+                <EnhancedHeroGraph />
               </Suspense>
             </motion.div>
-
-            {/* REMOVED: Floating Labels */}
-            {/* REMOVED: Advantages Section */}
-
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Indicador de scroll animado */}
+      {/* Indicador de scroll animado - Hidden on smaller screens */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }} // Only show when content is loaded
-        transition={{ delay: 2, duration: 1 }} // Delay appearance
-        className="scroll-indicator"
-        aria-hidden="true" // Hide from screen readers as it's decorative
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="scroll-indicator hidden sm:block"
+        aria-hidden="true"
       >
-        {/* Simple SVG arrow pointing down */}
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="m6 9 6 6 6-6"></path>
         </svg>
